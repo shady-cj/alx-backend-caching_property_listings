@@ -100,7 +100,7 @@ DATABASES = {
         "USER": env("POSTGRES_USER", default="myuser"),
         "PASSWORD": env("POSTGRES_PASSWORD", default=""),
         "HOST": "postgreSQL",      # service name in docker compose
-        "PORT": env("POSTGRES_PORT"),
+        "PORT": env("POSTGRES_PORT", default="5432", cast=int),
     }
 
 }
