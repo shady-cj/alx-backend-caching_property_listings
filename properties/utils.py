@@ -24,11 +24,11 @@ def get_redis_cache_metrics():
     hits = info.get("keyspace_hits", 0)
     misses = info.get("keyspace_misses", 0)
 
+    total_requests = hits + misses
+    hit_ratio = hits / total_requests if total_requests > 0 else 0
 
-    if hits + misses == 0:
-        hit_ratio = None  # avoid division by zero
-    else:
-        hit_ratio = hits / (hits + misses)
+    if hit_ratio == 0:
+        logger.error("Redis cache stats: total requests is 0")
 
     logger.info(
             f"Redis cache stats: hits={hits}, misses={misses}, hit_ratio={hit_ratio:.2%}"
