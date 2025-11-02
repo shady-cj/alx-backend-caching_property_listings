@@ -34,6 +34,7 @@ def get_redis_cache_metrics():
             f"Redis cache stats: hits={hits}, misses={misses}, hit_ratio={hit_ratio:.2%}"
         )
     metrics = {
+        "total_requests": total_requests,
         "keyspace_hits": hits,
         "keyspace_misses": misses,
         "hit_ratio": hit_ratio,
